@@ -7,7 +7,7 @@ export default function ItsTooDark() {
     const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
       const root = document.documentElement;
       root.style.setProperty("--mouse-x", `${e.clientX}px`);
       root.style.setProperty("--mouse-y", `${e.clientY}px`);

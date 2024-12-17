@@ -1,6 +1,7 @@
 "use client";
 
 import Modal from "../components/Modal";
+import PageWrapper from "../components/PageWrapper";
 import { useState } from "react";
 export default function ClickTheButton() {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -10,14 +11,7 @@ export default function ClickTheButton() {
   };
 
   return (
-    <div
-      className={`relative flex flex-col h-screen justify-between items-center ${
-        modalOpen ? "bg-gray-800 bg-opacity-60" : "bg-gray-100"
-      } transition-colors`}
-    >
-      <div className="mt-6 text-3xl">
-        <span>Click the button!</span>
-      </div>
+    <PageWrapper>
       <div className="flex flex-grow justify-center items-center">
         <button
           onClick={onLevelComplete}
@@ -27,6 +21,6 @@ export default function ClickTheButton() {
         </button>
         {modalOpen && <Modal />}
       </div>
-    </div>
+    </PageWrapper>
   );
 }

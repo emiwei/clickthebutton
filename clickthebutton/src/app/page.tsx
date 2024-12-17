@@ -4,7 +4,8 @@ export default function Home() {
     {path: "./clickthebutton/", title: "click the button"},
     {path: "./itstoodark", title: "it's too dark"},
     {path: "./toomanybuttons", title: "too many buttons"},
-    {path: "./itstoodarkharder", title: "it's too dark (but harder)"}
+    {path: "./itstoodarkharder", title: "it's too dark (but harder)"},
+    {path: "./colorpicker", title: "color picker"},
   ]
   return (
     <div className="h-screen flex flex-col items-center p-10">
@@ -16,7 +17,7 @@ export default function Home() {
           <Link
           key={index}
           href={level.path}
-          className="p-4 rounded-md bg-gray-700 text-white hover:bg-gray-600 text-center">
+          className="p-4 rounded-md bg-gray-700 text-white hover:bg-gray-600 flex items-center justify-center text-center h-28">
             {level.title}
           </Link>
         ))} 
