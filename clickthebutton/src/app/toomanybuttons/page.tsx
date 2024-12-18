@@ -6,7 +6,7 @@ import Modal from "../components/Modal";
 export default function TooManyButtons() {
   const [clickCounter, setClickCounter] = useState<number>(0);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [buttons, setButtons] = useState([]);
+  const [buttons, setButtons] = useState<JSX.Element[]>([]);
 
   const onLevelComplete = () => {
     setModalOpen(true);
@@ -14,10 +14,10 @@ export default function TooManyButtons() {
 
   const onWrongClick = () => {
     setClickCounter((prev) => prev + 1);
-  }
+  };
 
   useEffect(() => {
-    const newButtons = [];
+    const newButtons: JSX.Element[] = [];
     const selectedButton = Math.floor(Math.random() * 108);
     for (let i = 0; i < 108; i++) {
       if (i == selectedButton) {
@@ -31,7 +31,10 @@ export default function TooManyButtons() {
         );
       } else {
         newButtons.push(
-          <button onClick={onWrongClick} className="border p-4 bg-white hover:shadow-sm hover:bg-slate-50">
+          <button
+            onClick={onWrongClick}
+            className="border p-4 bg-white hover:shadow-sm hover:bg-slate-50"
+          >
             the button
           </button>
         );
@@ -47,7 +50,7 @@ export default function TooManyButtons() {
           <div key={index}>{button}</div>
         ))}
       </div>
-      {modalOpen && <Modal/>}
+      {modalOpen && <Modal />}
     </PageWrapper>
   );
 }

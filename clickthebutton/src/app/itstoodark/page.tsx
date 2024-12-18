@@ -4,10 +4,29 @@ import { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 
 export default function ItsTooDark() {
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [randomPosition, setRandomPosition] = useState<{
+    x: Number;
+    y: Number;
+  }>({ x: 0, y: 0 });
 
   useEffect(() => {
-    const handleMouseMove = (e: { clientX: any; clientY: any; }) => {
+    const generateRandomPosition = () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      const buttonWidth = 112;
+      const buttonHeight = 56;
+      const randomX = Math.floor(Math.random() * (screenWidth - buttonWidth));
+      const randomY = Math.floor(Math.random() * (screenHeight - buttonHeight));
+
+      return { x: randomX, y: randomY };
+    };
+
+    const randomPosition = generateRandomPosition();
+    setRandomPosition(randomPosition);
+
+    const handleMouseMove = (e: { clientX: any; clientY: any }) => {
       const root = document.documentElement;
       root.style.setProperty("--mouse-x", `${e.clientX}px`);
       root.style.setProperty("--mouse-y", `${e.clientY}px`);
@@ -19,27 +38,12 @@ export default function ItsTooDark() {
     };
   }, []);
 
-  const generateRandomPosition = () => {
-    const screenWidth = window.innerWidth;
-    const screenHeight = window.innerHeight;
-
-    const buttonWidth = 112;
-    const buttonHeight = 56;
-    const randomX = Math.floor(Math.random() * (screenWidth - buttonWidth));
-    const randomY = Math.floor(Math.random() * (screenHeight - buttonHeight));
-
-    return { x: randomX, y: randomY };
-  };
-
   const onLevelComplete = () => {
     setModalOpen(true);
-  }
+  };
 
-  const randomPosition = generateRandomPosition();
   return (
-    <div
-      className="flashlight bg-black h-screen w-screen overflow-hidden relative flex flex-col justify-between items-center"
-    >
+    <div className="flashlight bg-black h-screen w-screen overflow-hidden relative flex flex-col justify-between items-center">
       <div className="mt-6 text-3xl">
         <span>Click the button!</span>
       </div>
@@ -50,8 +54,8 @@ export default function ItsTooDark() {
       >
         the button
       </button>
-      
-      {modalOpen && <Modal/>}
+
+      {modalOpen && <Modal />}
     </div>
   );
 }

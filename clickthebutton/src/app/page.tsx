@@ -6,6 +6,8 @@ export default function Home() {
     {path: "./toomanybuttons", title: "too many buttons"},
     {path: "./itstoodarkharder", title: "it's too dark (but harder)"},
     {path: "./colorpicker", title: "color picker"},
+    {path: "./permutations", title: "permutations"},
+    {path: "./roundemup", title: "round 'em up"}
   ]
   return (
     <div className="h-screen flex flex-col items-center p-10">
